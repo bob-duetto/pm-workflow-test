@@ -46,13 +46,18 @@ cursor .
 
 In Cursor chat, type:
 
-| Command | Creates |
-|---------|---------|
-| `/pm-initiative` | New strategic bet with metric target |
-| `/pm-experiment` | Hypothesis test linked to initiative |
-| `/pm-prd` | PRD from validated initiative |
-| `/pm-status` | Pipeline overview with alerts |
-| `/pm-doctor` | Verify config and check document health |
+| Command | What It Does |
+|---------|--------------|
+| `/pm-initiative` | Create new initiative |
+| `/pm-experiment` | Create experiment for initiative |
+| `/pm-prd` | Create PRD from validated initiative |
+| `/pm-status` | Show pipeline status |
+| `/pm-update` | Update document status |
+| `/pm-validate` | Check document is valid |
+| `/pm-commit` | Commit with conventional format |
+| `/pm-pr` | Create pull request |
+| `/pm-link` | Link to JIRA epic |
+| `/pm-doctor` | Verify configuration |
 
 ---
 
@@ -133,11 +138,16 @@ status: draft
 
 ```
 ├── .cursor/skills/         # Cursor slash commands
-│   ├── pm-initiative/      # /pm-initiative
-│   ├── pm-experiment/      # /pm-experiment
-│   ├── pm-prd/             # /pm-prd
-│   ├── pm-status/          # /pm-status
-│   └── pm-doctor/          # /pm-doctor
+│   ├── pm-initiative/      # Create initiative
+│   ├── pm-experiment/      # Create experiment
+│   ├── pm-prd/             # Create PRD
+│   ├── pm-status/          # View status
+│   ├── pm-update/          # Update status
+│   ├── pm-validate/        # Validate document
+│   ├── pm-commit/          # Git commit
+│   ├── pm-pr/              # Create PR
+│   ├── pm-link/            # Link to JIRA
+│   └── pm-doctor/          # Check config
 ├── initiatives/2026/       # Strategic bets
 ├── experiments/2026/       # Discovery artifacts
 ├── prds/active/            # Active specifications
