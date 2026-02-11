@@ -48,6 +48,7 @@ In Cursor chat, type:
 
 | Command | What It Does |
 |---------|--------------|
+| `/pm-help` | **Show all commands** |
 | `/pm-initiative` | Create new initiative |
 | `/pm-experiment` | Create experiment for initiative |
 | `/pm-prd` | Create PRD from validated initiative |
@@ -137,7 +138,8 @@ status: draft
 ## Directory Structure
 
 ```
-├── .cursor/skills/         # Cursor slash commands
+├── .cursor/skills/         # Cursor slash commands (11 skills)
+│   ├── pm-help/            # Show all commands
 │   ├── pm-initiative/      # Create initiative
 │   ├── pm-experiment/      # Create experiment
 │   ├── pm-prd/             # Create PRD
