@@ -172,13 +172,38 @@ status: draft
 
 ## Visual Editing
 
-**Front Matter CMS** provides form-based YAML editing:
+### Option 1: Front Matter CMS (Cursor)
 
-1. Open any `.md` file
+Form-based YAML frontmatter editing:
+
+1. Open any `.md` file in Cursor
 2. Click 📋 in the sidebar
 3. Edit with dropdowns, date pickers, tag selectors
 
-No manual YAML editing required.
+### Option 2: Obsidian (True WYSIWYG)
+
+For visual markdown editing (click and type formatted text):
+
+```bash
+# Open same folder in Obsidian
+open -a Obsidian ~/Clients/Duetto/pm-workflow-test
+```
+
+**Live Preview mode** shows formatted text as you type:
+- Headings render immediately
+- Bold/italic render inline
+- Lists format automatically
+- Links are clickable
+
+### Recommended Workflow
+
+| Task | Tool |
+|------|------|
+| Slash commands (`/pm-initiative`) | Cursor |
+| Visual markdown editing | Obsidian |
+| Git operations | Either |
+
+Both tools edit the same `.md` files - changes sync automatically.
 
 ---
 

@@ -1,0 +1,12 @@
+{
+  "livePreview": true,
+  "defaultViewMode": "preview",
+  "showFrontmatter": true,
+  "foldHeading": false,
+  "foldIndent": false,
+  "showLineNumber": false,
+  "readableLineLength": true,
+  "strictLineBreaks": false,
+  "showInlineTitle": true,
+  "alwaysUpdateLinks": true
+}
