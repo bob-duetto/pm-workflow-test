@@ -52,6 +52,7 @@ In Cursor chat, type:
 | `/pm-experiment` | Hypothesis test linked to initiative |
 | `/pm-prd` | PRD from validated initiative |
 | `/pm-status` | Pipeline overview with alerts |
+| `/pm-doctor` | Verify config and check document health |
 
 ---
 
@@ -135,7 +136,8 @@ status: draft
 │   ├── pm-initiative/      # /pm-initiative
 │   ├── pm-experiment/      # /pm-experiment
 │   ├── pm-prd/             # /pm-prd
-│   └── pm-status/          # /pm-status
+│   ├── pm-status/          # /pm-status
+│   └── pm-doctor/          # /pm-doctor
 ├── initiatives/2026/       # Strategic bets
 ├── experiments/2026/       # Discovery artifacts
 ├── prds/active/            # Active specifications
