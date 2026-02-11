@@ -1,69 +1,144 @@
-# PM Workflow Test Repository
+# APEX PM Workflow
 
-Test repository for Duetto's APEX/PDP product development workflow with AI-assisted tooling.
+**AI-assisted Product Execution framework for Duetto Product Managers**
 
-## Quick Start
+## What Is This?
 
-### 1. Install Cursor Extensions
+This repository provides **Cursor IDE skills** and **visual editing tools** for Duetto's APEX (AI Product Execution) workflow. It enables Product Managers to:
 
-1. **Front Matter CMS** - Visual YAML frontmatter editing
-   - Open Cursor → `Cmd+Shift+X` → Search "Front Matter CMS" → Install
+- Create and track **Initiatives** (strategic bets tied to team metrics)
+- Run **Experiments** (hypothesis testing with 2-week time boxes)
+- Write **PRDs** (specs linked to validated experiments)
+- Monitor **Pipeline Status** (with time-box alerts)
 
-### 2. Use Slash Commands (Cursor Skills)
+All documents use YAML frontmatter for structured data, enabling AI-assisted automation and traceability from hypothesis to shipped feature.
 
-Type these in Cursor chat to create documents:
+## Why APEX?
 
-| Command | What It Does |
-|---------|--------------|
-| `/pm-initiative` | Create new initiative with guided prompts |
-| `/pm-experiment` | Create experiment linked to initiative |
-| `/pm-prd` | Create PRD from validated initiative |
-| `/pm-status` | Show workflow status and alerts |
+| Traditional PDP | APEX Approach |
+|-----------------|---------------|
+| Feature-first thinking | Outcome-first (tied to metrics) |
+| Build then validate | Validate then build |
+| PRD → Engineering | Initiative → Experiments → PRD |
+| Success = shipped | Success = metric moved |
+| Killed features = failure | Killed initiatives = learning |
 
-### 3. Visual Frontmatter Editing
-
-1. Open any `.md` file
-2. Click the **Front Matter icon** (📋) in the sidebar
-3. Edit fields with dropdowns, date pickers, and tag selectors
+**Core principle:** No PRD without validated experiments. No experiment without a measurable hypothesis.
 
 ---
 
-## Workflow Overview
+## Quick Start
+
+### 1. Clone and Open
+
+```bash
+git clone https://github.com/bob-duetto/pm-workflow-test.git
+cd pm-workflow-test
+cursor .
+```
+
+### 2. Install Extension
+
+**Front Matter CMS** for visual YAML editing:
+- `Cmd+Shift+X` → Search "Front Matter CMS" → Install
+
+### 3. Use Slash Commands
+
+In Cursor chat, type:
+
+| Command | Creates |
+|---------|---------|
+| `/pm-initiative` | New strategic bet with metric target |
+| `/pm-experiment` | Hypothesis test linked to initiative |
+| `/pm-prd` | PRD from validated initiative |
+| `/pm-status` | Pipeline overview with alerts |
+
+---
+
+## The APEX Workflow
 
 ```
-INITIATIVE → EXPERIMENTS → PRD → EPIC/STORIES → CODE → MEASURE → LEARN
-    │            │           │        │           │        │         │
-  The Bet    Discovery    Review   Track       Test    Verify    Iterate/
- (Metric)   (hypothesis   Approve  Progress    Ship    Impact      Kill
-            + learning)
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│  INITIATIVE │────▶│ EXPERIMENTS │────▶│     PRD     │────▶│   SHIPPED   │
+│   (6 wks)   │     │  (2 wks ea) │     │  (Review)   │     │  (Measure)  │
+└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
+     │                    │                   │                    │
+   The Bet            Discovery            Build It           Learn From It
+  "We believe..."   Test hypothesis     Full spec + Epic     Did metric move?
 ```
 
-### Time Boxes
+### Time Boxes (Enforced)
 
-| Artifact | Max Duration | Alert Threshold |
-|----------|--------------|-----------------|
-| Initiative (discovery) | 6 weeks | Week 5 |
-| Experiment | 2 weeks | Day 12 |
-| PRD (review) | 2 weeks | Day 10 |
+| Stage | Max Duration | Outcome |
+|-------|--------------|---------|
+| Initiative Discovery | 6 weeks | Validate or Kill |
+| Single Experiment | 2 weeks | validated / invalidated / inconclusive |
+| Max Experiments | 3 per initiative | Must decide after 3 |
+
+### Status Alerts
+
+```
+⚠️  ALERTS
+----------
+• I-2026-001 approaching 6-week limit (10 days left)
+• E-2026-004 over 2-week time box by 1 day
+```
+
+---
+
+## Document Types
+
+### Initiative (I-YYYY-NNN)
+
+The strategic bet. Ties to a team metric.
+
+```yaml
+id: I-2026-001
+type: initiative
+status: discovery
+metric_target: "booking_conversion_rate"
+hypothesis: "We believe simplifying checkout will increase conversion by 15%"
+```
+
+### Experiment (E-YYYY-NNN)
+
+Tests a hypothesis. Links to parent initiative.
+
+```yaml
+id: E-2026-003
+type: experiment
+parent_initiative: I-2026-001
+hypothesis:
+  statement: "Users abandon checkout because of too many steps"
+  validation_method: interview
+success_criteria: ">60% cite step count as friction"
+```
+
+### PRD (PRD-YYYY-NNN)
+
+Full spec for validated initiatives. Links to experiments.
+
+```yaml
+id: PRD-2026-001
+type: prd
+parent_initiative: I-2026-001
+validated_experiments: [E-2026-001, E-2026-003]
+status: draft
+```
 
 ---
 
 ## Directory Structure
 
 ```
-├── .cursor/
-│   ├── rules/              # AI context rules
-│   └── skills/             # Slash command skills
-│       ├── pm-initiative/  # /pm-initiative command
-│       ├── pm-experiment/  # /pm-experiment command
-│       ├── pm-prd/         # /pm-prd command
-│       └── pm-status/      # /pm-status command
-├── .claude/
-│   ├── agents/             # Claude Code agent (duetto-pm)
-│   └── skills/             # Claude Code skills
-├── initiatives/2026/       # Strategic bets (I-YYYY-NNN)
-├── experiments/2026/       # Discovery artifacts (E-YYYY-NNN)
-├── prds/active/            # Product specs (PRD-YYYY-NNN)
+├── .cursor/skills/         # Cursor slash commands
+│   ├── pm-initiative/      # /pm-initiative
+│   ├── pm-experiment/      # /pm-experiment
+│   ├── pm-prd/             # /pm-prd
+│   └── pm-status/          # /pm-status
+├── initiatives/2026/       # Strategic bets
+├── experiments/2026/       # Discovery artifacts
+├── prds/active/            # Active specifications
 ├── team-charters/          # Team metrics (TC-NNN)
 ├── templates/              # Document templates
 └── frontmatter.json        # Front Matter CMS config
@@ -71,151 +146,50 @@ INITIATIVE → EXPERIMENTS → PRD → EPIC/STORIES → CODE → MEASURE → LEA
 
 ---
 
-## Slash Command Details
+## Visual Editing
 
-### `/pm-initiative`
+**Front Matter CMS** provides form-based YAML editing:
 
-Creates a new initiative with guided prompts:
+1. Open any `.md` file
+2. Click 📋 in the sidebar
+3. Edit with dropdowns, date pickers, tag selectors
 
-1. **Title** - What is this initiative about?
-2. **Metric Target** - Which team metric will this move?
-3. **Hypothesis** - "We believe [X] will [Y] by [Z]"
-4. **Team** - Team charter ID (optional)
-
-**Output:** `initiatives/2026/I-2026-{NNN}.md`
-
-### `/pm-experiment`
-
-Creates an experiment linked to an initiative:
-
-1. **Parent Initiative** - I-2026-NNN
-2. **Title** - What are we testing?
-3. **Hypothesis** - "We believe [X] will [Y] because [Z]"
-4. **Validation Method** - interview | analytics | prototype | a_b_test | spike
-5. **Success Criteria** - What validates this?
-
-**Output:** `experiments/2026/E-2026-{NNN}.md`
-
-### `/pm-prd`
-
-Creates a PRD from a validated initiative:
-
-1. **Parent Initiative** - Must be validated
-2. **Title** - Feature/product name
-3. **Problem Statement** - What problem does this solve?
-4. **Solution Summary** - High-level approach
-5. **Success Metrics** - How will we measure success?
-
-**Output:** `prds/active/PRD-2026-{NNN}/PRD-2026-{NNN}.md`
-
-### `/pm-status`
-
-Shows workflow status:
-
-```
-📊 APEX WORKFLOW STATUS
-=======================
-
-🔬 DISCOVERY (6 week max)
--------------------------
-I-2026-001: Booking Conversion    Week 4/6  🟡  2 experiments
-
-🧪 EXPERIMENTS (2 week max)
----------------------------
-E-2026-003: Checkout Interviews   Day 5/14  🟢  → I-2026-001
-
-⚠️  ALERTS
-----------
-• I-2026-001 approaching 6-week limit (10 days left)
-```
+No manual YAML editing required.
 
 ---
 
-## Alternative Methods
+## Integration with Claude Code
 
-### VS Code/Cursor Snippets
-
-In any `.md` file, type a prefix and press Tab:
-
-| Prefix | Creates |
-|--------|---------|
-| `initiative` | Initiative template |
-| `experiment` | Experiment template |
-| `prd` | PRD template |
-| `charter` | Team Charter template |
-
-### Claude Code CLI
-
-If using Claude Code alongside Cursor:
+This repo also includes `.claude/agents/duetto-pm.md` for use with Claude Code CLI:
 
 ```bash
-# Claude agent commands
-claude "create an initiative for booking improvements"
+# Natural language commands
+claude "create an initiative for improving time-to-value"
+claude "what's the status of I-2026-001?"
 ```
-
----
-
-## Frontmatter Standards
-
-All documents require YAML frontmatter:
-
-```yaml
----
-title: "Document Title"
-id: I-2026-001              # Unique ID
-type: initiative            # initiative | experiment | prd | team-charter
-status: discovery           # See status workflows
-created: 2026-02-11
-updated: 2026-02-11
-author: "PM Name"
-tags:
-  - product-area
-  - quarter
----
-```
-
-### Status Workflows
-
-**Initiative:**
-```
-discovery → validated → delivery → shipped
-         └→ killed (with learnings)
-```
-
-**Experiment:**
-```
-planned → running → completed
-```
-Outcome: `validated` | `invalidated` | `inconclusive`
-
-**PRD:**
-```
-draft → review → approved → in-development → shipped → learning
-```
-
----
-
-## Core Principles
-
-| Principle | Description |
-|-----------|-------------|
-| **Outcome-First** | Every initiative ties to a team metric |
-| **Hypothesis-Driven** | Start with a testable bet |
-| **Evidence-Based** | Progression requires evidence |
-| **Time-Boxed** | Max 6 weeks discovery, 2 weeks per experiment |
-| **Learning-Captured** | Killed initiatives are celebrated |
 
 ---
 
 ## Success Metrics
 
-| Metric | Target |
-|--------|--------|
-| Initiative kill rate | 30-50% (healthy learning) |
+| Metric | Healthy Target |
+|--------|----------------|
+| Initiative kill rate | 30-50% |
 | Discovery duration | <6 weeks |
-| Traceability | 100% features linked |
+| Features with traceability | 100% |
+| Experiments per validated initiative | 1-3 |
+
+A healthy kill rate means you're taking appropriate risks and learning from invalidated hypotheses.
 
 ---
 
-*Status: Test Repository*
+## Links
+
+- [APEX Process Overview](https://notion.so/duetto/apex)
+- [Team Charters](team-charters/)
+- [PRD Templates](templates/)
+
+---
+
+*Duetto Research - AI Product Execution Framework*
 *Created: 2026-02-11*
