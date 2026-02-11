@@ -12,6 +12,15 @@ disable-model-invocation: true
 
 When user types `/pm-prd`, guide them through creating a PRD from a validated initiative.
 
+## OUTPUT LOCATION
+
+**Directory:** `prds/active/PRD-2026-{NNN}/`
+**Filename:** `PRD-2026-{NNN}.md` (auto-increment NNN)
+**Example:** `prds/active/PRD-2026-002/PRD-2026-002.md`
+
+⚠️ ALWAYS create PRD in its own subdirectory under `prds/active/`
+⚠️ Never create PRDs at root or directly in `prds/active/`
+
 ## Interactive Flow
 
 **Step 1: Parent Initiative**

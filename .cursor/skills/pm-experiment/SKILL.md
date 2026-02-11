@@ -12,6 +12,14 @@ disable-model-invocation: true
 
 When user types `/pm-experiment`, guide them through creating a new experiment.
 
+## OUTPUT LOCATION
+
+**Directory:** `experiments/2026/`
+**Filename:** `E-2026-{NNN}.md` (auto-increment NNN)
+**Example:** `experiments/2026/E-2026-005.md`
+
+⚠️ ALWAYS create in `experiments/2026/` - never at root or other directories.
+
 ## Interactive Flow
 
 **Step 1: Parent Initiative**

@@ -12,6 +12,14 @@ disable-model-invocation: true
 
 When user types `/pm-initiative`, guide them through creating a new initiative.
 
+## OUTPUT LOCATION
+
+**Directory:** `initiatives/2026/`
+**Filename:** `I-2026-{NNN}.md` (auto-increment NNN)
+**Example:** `initiatives/2026/I-2026-003.md`
+
+⚠️ ALWAYS create in `initiatives/2026/` - never at root or other directories.
+
 ## Interactive Flow
 
 **Step 1: Title**
