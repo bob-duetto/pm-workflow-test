@@ -1,0 +1,425 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.framework.id": "other",
+  "frontMatter.preview.host": "http://localhost:3000",
+  "frontMatter.content.publicFolder": "assets",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "Initiatives",
+      "path": "[[workspace]]/initiatives/2026",
+      "contentTypes": ["initiative"]
+    },
+    {
+      "title": "Experiments",
+      "path": "[[workspace]]/experiments/2026",
+      "contentTypes": ["experiment"]
+    },
+    {
+      "title": "PRDs",
+      "path": "[[workspace]]/prds/active",
+      "contentTypes": ["prd"]
+    },
+    {
+      "title": "Team Charters",
+      "path": "[[workspace]]/team-charters",
+      "contentTypes": ["team-charter"]
+    }
+  ],
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "initiative",
+      "pageBundle": false,
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "ID",
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Format: I-2026-NNN"
+        },
+        {
+          "title": "Type",
+          "name": "type",
+          "type": "string",
+          "default": "initiative",
+          "hidden": true
+        },
+        {
+          "title": "Status",
+          "name": "status",
+          "type": "choice",
+          "choices": ["discovery", "validated", "delivery", "shipped", "killed"],
+          "default": "discovery",
+          "required": true
+        },
+        {
+          "title": "Metric Target",
+          "name": "metric_target",
+          "type": "string",
+          "required": true,
+          "description": "Which team metric will this move?"
+        },
+        {
+          "title": "Hypothesis",
+          "name": "hypothesis",
+          "type": "string",
+          "required": true,
+          "description": "We believe X will Y by Z"
+        },
+        {
+          "title": "Confidence",
+          "name": "confidence",
+          "type": "choice",
+          "choices": ["low", "medium", "high"],
+          "default": "low"
+        },
+        {
+          "title": "Max Experiments",
+          "name": "max_experiments",
+          "type": "number",
+          "default": 3
+        },
+        {
+          "title": "Time Box",
+          "name": "time_box",
+          "type": "string",
+          "default": "6 weeks"
+        },
+        {
+          "title": "Created",
+          "name": "created",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
+        },
+        {
+          "title": "Updated",
+          "name": "updated",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isModifiedDate": true
+        },
+        {
+          "title": "Author",
+          "name": "author",
+          "type": "string"
+        },
+        {
+          "title": "Team",
+          "name": "team",
+          "type": "string",
+          "description": "Team Charter ID (TC-NNN)"
+        },
+        {
+          "title": "Related Experiments",
+          "name": "related_experiments",
+          "type": "list",
+          "default": []
+        },
+        {
+          "title": "Related PRD",
+          "name": "related_prd",
+          "type": "string"
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        }
+      ]
+    },
+    {
+      "name": "experiment",
+      "pageBundle": false,
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "ID",
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Format: E-2026-NNN"
+        },
+        {
+          "title": "Type",
+          "name": "type",
+          "type": "string",
+          "default": "experiment",
+          "hidden": true
+        },
+        {
+          "title": "Parent Initiative",
+          "name": "parent_initiative",
+          "type": "string",
+          "required": true,
+          "description": "I-2026-NNN"
+        },
+        {
+          "title": "Status",
+          "name": "status",
+          "type": "choice",
+          "choices": ["planned", "running", "completed"],
+          "default": "planned",
+          "required": true
+        },
+        {
+          "title": "Hypothesis Statement",
+          "name": "hypothesis.statement",
+          "type": "string",
+          "required": true,
+          "description": "We believe X will Y because Z"
+        },
+        {
+          "title": "Hypothesis Confidence",
+          "name": "hypothesis.confidence",
+          "type": "choice",
+          "choices": ["low", "medium", "high"],
+          "default": "low"
+        },
+        {
+          "title": "Validation Method",
+          "name": "hypothesis.validation_method",
+          "type": "choice",
+          "choices": ["interview", "analytics", "prototype", "a_b_test", "spike"],
+          "required": true
+        },
+        {
+          "title": "Time Box",
+          "name": "time_box",
+          "type": "string",
+          "default": "2 weeks"
+        },
+        {
+          "title": "Success Criteria",
+          "name": "success_criteria",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Learning Outcome",
+          "name": "learning.outcome",
+          "type": "choice",
+          "choices": ["validated", "invalidated", "inconclusive"],
+          "description": "Fill after experiment completes"
+        },
+        {
+          "title": "Key Insight",
+          "name": "learning.key_insight",
+          "type": "string"
+        },
+        {
+          "title": "Recommendation",
+          "name": "learning.recommendation",
+          "type": "string"
+        },
+        {
+          "title": "Created",
+          "name": "created",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
+        },
+        {
+          "title": "Updated",
+          "name": "updated",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isModifiedDate": true
+        },
+        {
+          "title": "Author",
+          "name": "author",
+          "type": "string"
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        }
+      ]
+    },
+    {
+      "name": "prd",
+      "pageBundle": false,
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "ID",
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Format: PRD-2026-NNN"
+        },
+        {
+          "title": "Type",
+          "name": "type",
+          "type": "string",
+          "default": "prd",
+          "hidden": true
+        },
+        {
+          "title": "Status",
+          "name": "status",
+          "type": "choice",
+          "choices": ["draft", "review", "approved", "in-development", "shipped", "learning"],
+          "default": "draft",
+          "required": true
+        },
+        {
+          "title": "Parent Initiative",
+          "name": "parent_initiative",
+          "type": "string",
+          "required": true,
+          "description": "I-2026-NNN"
+        },
+        {
+          "title": "Validated Experiments",
+          "name": "validated_experiments",
+          "type": "list",
+          "required": true
+        },
+        {
+          "title": "Epic ID",
+          "name": "epic_id",
+          "type": "string",
+          "description": "JIRA Epic (EPIC-NNN)"
+        },
+        {
+          "title": "Approvers",
+          "name": "approvers",
+          "type": "list"
+        },
+        {
+          "title": "Created",
+          "name": "created",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
+        },
+        {
+          "title": "Updated",
+          "name": "updated",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isModifiedDate": true
+        },
+        {
+          "title": "Author",
+          "name": "author",
+          "type": "string"
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        }
+      ]
+    },
+    {
+      "name": "team-charter",
+      "pageBundle": false,
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "ID",
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Format: TC-NNN"
+        },
+        {
+          "title": "Type",
+          "name": "type",
+          "type": "string",
+          "default": "team-charter",
+          "hidden": true
+        },
+        {
+          "title": "Status",
+          "name": "status",
+          "type": "choice",
+          "choices": ["draft", "active", "archived"],
+          "default": "draft"
+        },
+        {
+          "title": "Team Lead",
+          "name": "team_lead",
+          "type": "string"
+        },
+        {
+          "title": "Product Manager",
+          "name": "product_manager",
+          "type": "string"
+        },
+        {
+          "title": "Engineering Manager",
+          "name": "engineering_manager",
+          "type": "string"
+        },
+        {
+          "title": "Team Size",
+          "name": "team_size",
+          "type": "number"
+        },
+        {
+          "title": "Created",
+          "name": "created",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
+        },
+        {
+          "title": "Updated",
+          "name": "updated",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isModifiedDate": true
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        }
+      ]
+    }
+  ],
+  "frontMatter.taxonomy.tags": [
+    "booking",
+    "pricing",
+    "integrations",
+    "platform",
+    "analytics",
+    "q1-2026",
+    "q2-2026",
+    "q3-2026",
+    "q4-2026"
+  ],
+  "frontMatter.dashboard.openOnStart": false,
+  "frontMatter.panel.freeform": true,
+  "frontMatter.content.autoUpdateDate": true
+}
