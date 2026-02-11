@@ -19,6 +19,11 @@ Show help for all APEX PM commands.
 📚 APEX PM WORKFLOW HELP
 ========================
 
+FIRST TIME
+----------
+/pm-setup          Configure git identity (name/email)
+/pm-help           Show this help
+
 CREATING DOCUMENTS
 ------------------
 /pm-initiative     Create new initiative (strategic bet)
@@ -40,7 +45,7 @@ UPDATING
 GIT WORKFLOW
 ------------
 /pm-commit         Commit changes with conventional format
-/pm-pr             Create pull request
+/pm-pr             Create pull request with proper branch
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -90,6 +95,17 @@ TIME BOXES
 Initiative discovery: 6 weeks max
 Experiment:           2 weeks max
 Experiments per init: 3 max
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BRANCH NAMING
+=============
+
+initiative/I-2026-NNN     For new initiatives
+experiment/E-2026-NNN     For new experiments
+prd/PRD-2026-NNN          For new PRDs
+apex/brief-description    For mixed changes
+docs/brief-description    For config/docs
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 

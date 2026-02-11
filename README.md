@@ -37,7 +37,15 @@ cd pm-workflow-test
 cursor .
 ```
 
-### 2. Install Extension
+### 2. First-Time Setup
+
+```
+/pm-setup
+```
+
+This configures your git identity (name/email) if not already set.
+
+### 3. Install Extension
 
 **Front Matter CMS** for visual YAML editing:
 - `Cmd+Shift+X` → Search "Front Matter CMS" → Install
@@ -49,6 +57,7 @@ In Cursor chat, type:
 | Command | What It Does |
 |---------|--------------|
 | `/pm-help` | **Show all commands** |
+| `/pm-setup` | **First-time setup (git identity)** |
 | `/pm-initiative` | Create new initiative |
 | `/pm-experiment` | Create experiment for initiative |
 | `/pm-prd` | Create PRD from validated initiative |
@@ -138,8 +147,9 @@ status: draft
 ## Directory Structure
 
 ```
-├── .cursor/skills/         # Cursor slash commands (11 skills)
+├── .cursor/skills/         # Cursor slash commands (12 skills)
 │   ├── pm-help/            # Show all commands
+│   ├── pm-setup/           # First-time setup
 │   ├── pm-initiative/      # Create initiative
 │   ├── pm-experiment/      # Create experiment
 │   ├── pm-prd/             # Create PRD
@@ -194,6 +204,41 @@ claude "what's the status of I-2026-001?"
 | Experiments per validated initiative | 1-3 |
 
 A healthy kill rate means you're taking appropriate risks and learning from invalidated hypotheses.
+
+---
+
+## Branch Naming Convention
+
+| Document Type | Branch Pattern | Example |
+|---------------|----------------|---------|
+| Initiative | `initiative/I-2026-NNN` | `initiative/I-2026-003` |
+| Experiment | `experiment/E-2026-NNN` | `experiment/E-2026-005` |
+| PRD | `prd/PRD-2026-NNN` | `prd/PRD-2026-002` |
+| Multiple/Mixed | `apex/brief-description` | `apex/booking-discovery` |
+| Docs/Config | `docs/brief-description` | `docs/update-templates` |
+
+**Rules:**
+- Always lowercase
+- Use hyphens, not underscores
+- `/pm-pr` creates branches automatically
+
+---
+
+## Scope
+
+These skills handle everything **within this repo**:
+
+✅ **In scope:**
+- Creating/editing documents
+- Git commits and PRs
+- Status tracking
+- Validation
+
+❌ **Out of scope (handled by admins/automation):**
+- Creating new repositories
+- GitHub organization settings
+- Cross-repo operations
+- Installing Cursor extensions
 
 ---
 
