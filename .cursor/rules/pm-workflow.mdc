@@ -1,0 +1,98 @@
+---
+description: PM Workflow Rules for APEX/PDP Process
+globs:
+  - "initiatives/**/*.md"
+  - "experiments/**/*.md"
+  - "prds/**/*.md"
+  - "team-charters/**/*.md"
+alwaysApply: true
+---
+
+# PM Workflow Rules
+
+You are assisting with Duetto's APEX/PDP product development process. This is an outcome-driven, hypothesis-first workflow.
+
+## Artifact Hierarchy
+
+```
+Initiative (The Bet) → Experiments (Hypothesis + Learning) → PRD (Actionable Spec) → JIRA Epic/Stories
+```
+
+## Frontmatter Requirements
+
+All documents MUST have YAML frontmatter with:
+- `id`: Unique identifier (I-YYYY-NNN, E-YYYY-NNN, PRD-YYYY-NNN, TC-NNN)
+- `type`: initiative | experiment | prd | team-charter
+- `status`: Current workflow status
+- `created`/`updated`: ISO dates
+- `author`: Document owner
+- `tags`: For discovery and filtering
+
+## Status Workflows
+
+### Initiative
+```
+discovery → validated → delivery → shipped
+         └→ killed (with learnings)
+```
+
+### Experiment
+```
+planned → running → completed
+```
+- Outcome: validated | invalidated | inconclusive
+
+### PRD
+```
+draft → review → approved → in-development → shipped → learning
+```
+
+## Linking Rules
+
+1. **Experiments** MUST link to parent initiative via `parent_initiative`
+2. **PRDs** MUST link to:
+   - `parent_initiative`: The bet this implements
+   - `validated_experiments`: Evidence that validated the approach
+3. PRDs can only proceed if parent initiative is `validated` or `delivery`
+
+## Time Constraints
+
+- **Initiative discovery**: Max 6 weeks
+- **Single experiment**: Max 2 weeks
+- **Max experiments per initiative**: 3
+
+## When Creating Documents
+
+### New Initiative
+1. Use `initiative` snippet or template
+2. Set initial status to `discovery`
+3. Define clear hypothesis with metric target
+4. Plan 1-3 experiments
+
+### New Experiment
+1. Use `experiment` snippet or template
+2. Link to parent initiative
+3. Set initial status to `planned`
+4. Define success criteria BEFORE running
+
+### New PRD
+1. Use `prd` snippet or template
+2. Link to validated initiative and experiments
+3. Include discovery summary
+4. Define post-ship learning plan
+
+## Validation Checks
+
+When reviewing documents, verify:
+- [ ] Frontmatter is complete and valid
+- [ ] Links to related documents exist
+- [ ] Status is appropriate for content
+- [ ] Metric targets are measurable
+- [ ] Time-boxes are defined
+
+## Best Practices
+
+1. **Kill initiatives early** - Invalidated hypotheses are valuable learnings
+2. **Evidence over opinion** - Require data for status transitions
+3. **Link everything** - Maintain traceability from idea to shipped feature
+4. **Measure outcomes** - Every shipped PRD needs a learning checkpoint
